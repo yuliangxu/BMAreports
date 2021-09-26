@@ -1,0 +1,40 @@
+---
+title: "2021-09-24_simulations_denseBMA1"
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(BayesGPfit)
+fpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA/sim_result"
+dpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA/data"
+```
+
+## Analyze scalar-on-image regression
+```{r Y-getin all data, include=FALSE}
+
+```
+
+```{r Y-regression}
+
+```
+
+## Analyze image-on-scalar regression
+
+You can also embed plots, for example:
+
+```{r M-regression}
+plot(pressure)
+```
+
+## Analyze total indirect effect
+
+You can also embed plots, for example:
+
+```{r total}
+plot(pressure)
+```
+
