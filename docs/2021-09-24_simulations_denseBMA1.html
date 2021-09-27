@@ -373,7 +373,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-09-26
+<strong>Last updated:</strong> 2021-09-27
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -464,16 +464,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongeadaea1"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> eadaea1 </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong3715c06"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 3715c06 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongeadaea1" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrong3715c06" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version eadaea1. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version 3715c06. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -481,6 +481,8 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
 
 </code></pre>
 <p>
@@ -524,6 +526,40 @@ Message
 Rmd
 </td>
 <td>
+3715c06
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-09-27
+</td>
+<td>
+Start my new project
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+638dcb1
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-09-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 eadaea1
 </td>
 <td>
@@ -543,20 +579,250 @@ Start my new project
 </div>
 </div>
 </div>
-<div id="analyze-scalar-on-image-regression" class="section level2">
-<h2>Analyze scalar-on-image regression</h2>
+<div id="explain-on-the-row-names-in-the-following-table" class="section level1">
+<h1>Explain on the row names in the following table</h1>
+<p>I run 2 set of simulations, each with 100 replicates, one replicate being a dataset of n=1000. The true image consists of 64 x 64 pixels, evenly divided into 4 regions, the number of basis functions for each region is 231. Total p = 4096, total L= 924.</p>
+<p>In the first simulation, there is ONE cluster of signals within each region for both true alpha and beta. This will be denoted as “dense” in the result table.</p>
+<pre class="r"><code>datsim = readRDS(file.path(dpath,&quot;data1.rds&quot;))
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In the first simulation, there is TWO cluster of signals within each region for both true alpha and beta. This will be denoted as “sparse” in the result table.</p>
+<pre class="r"><code>datsim2 = readRDS(file.path(dpath2,&quot;data1.rds&quot;))
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In addition, in the FDR control procedure, the value delta affects the controlled FDR, so is the sample size. In the result below, I reported 2 result for each simulation when setting delta to 0.1 and 0.01. The number of samples used for beta is 2000, and for alpha is 200. For beta, the MCMC sample is thinned, taken once in every 10 samples.</p>
 </div>
-<div id="analyze-image-on-scalar-regression" class="section level2">
-<h2>Analyze image-on-scalar regression</h2>
-<p>You can also embed plots, for example:</p>
-<pre class="r"><code>plot(pressure)</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/M-regression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="result-for-beta" class="section level1">
+<h1>result for beta</h1>
+<pre class="r"><code>knitr::kable(t(tab_beta))</code></pre>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Analysis</td>
+<td align="left">dense:delta=0.1</td>
+<td align="left">dense:delta=0.01</td>
+<td align="left">sparse:delta=0.1</td>
+<td align="left">sparse:delta=0.01</td>
+</tr>
+<tr class="even">
+<td align="left">FDR_no_control</td>
+<td align="left">0.6046</td>
+<td align="left">0.6046</td>
+<td align="left">0.6465</td>
+<td align="left">0.6465</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision_no_control</td>
+<td align="left">0.6779</td>
+<td align="left">0.6779</td>
+<td align="left">0.7048</td>
+<td align="left">0.7048</td>
+</tr>
+<tr class="even">
+<td align="left">Power_no_control</td>
+<td align="left">0.9853</td>
+<td align="left">0.9853</td>
+<td align="left">0.9813</td>
+<td align="left">0.9813</td>
+</tr>
+<tr class="odd">
+<td align="left">CoverageProb</td>
+<td align="left">0.8468</td>
+<td align="left">0.8468</td>
+<td align="left">0.9304</td>
+<td align="left">0.9305</td>
+</tr>
+<tr class="even">
+<td align="left">FDR_control</td>
+<td align="left">0.1265</td>
+<td align="left">0.192</td>
+<td align="left">0.0639</td>
+<td align="left">0.1308</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision_control</td>
+<td align="left">0.9526</td>
+<td align="left">0.9381</td>
+<td align="left">0.969</td>
+<td align="left">0.961</td>
+</tr>
+<tr class="even">
+<td align="left">Power_control</td>
+<td align="left">0.9076</td>
+<td align="left">0.928</td>
+<td align="left">0.8683</td>
+<td align="left">0.8946</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="analyze-total-indirect-effect" class="section level2">
-<h2>Analyze total indirect effect</h2>
-<p>You can also embed plots, for example:</p>
-<pre class="r"><code>plot(pressure)</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/total-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="result-for-alpha" class="section level1">
+<h1>result for alpha</h1>
+<pre class="r"><code>knitr::kable(t(tab_alpha))</code></pre>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Analysis</td>
+<td align="left">dense:delta=0.1</td>
+<td align="left">dense:delta=0.01</td>
+<td align="left">sparse:delta=0.1</td>
+<td align="left">sparse:delta=0.01</td>
+</tr>
+<tr class="even">
+<td align="left">FDR_no_control</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision_no_control</td>
+<td align="left">0.9999</td>
+<td align="left">0.9999</td>
+<td align="left">0.9982</td>
+<td align="left">0.9982</td>
+</tr>
+<tr class="even">
+<td align="left">Power_no_control</td>
+<td align="left">0.9992</td>
+<td align="left">0.9992</td>
+<td align="left">0.9897</td>
+<td align="left">0.9897</td>
+</tr>
+<tr class="odd">
+<td align="left">CoverageProb</td>
+<td align="left">0.8816</td>
+<td align="left">0.8816</td>
+<td align="left">0.8547</td>
+<td align="left">0.8547</td>
+</tr>
+<tr class="even">
+<td align="left">FDR_control</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision_control</td>
+<td align="left">0.9963</td>
+<td align="left">0.9998</td>
+<td align="left">0.9979</td>
+<td align="left">0.9981</td>
+</tr>
+<tr class="even">
+<td align="left">Power_control</td>
+<td align="left">0.9737</td>
+<td align="left">0.9986</td>
+<td align="left">0.988</td>
+<td align="left">0.9891</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="result-for-total-indirect-effect" class="section level1">
+<h1>result for total indirect effect</h1>
+<pre class="r"><code>knitr::kable(t(tab_total))</code></pre>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Analysis</td>
+<td align="left">dense:delta=0.1</td>
+<td align="left">dense:delta=0.01</td>
+<td align="left">sparse:delta=0.1</td>
+<td align="left">sparse:delta=0.01</td>
+</tr>
+<tr class="even">
+<td align="left">FDR_no_control</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0.1608</td>
+<td align="left">0.1609</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision_no_control</td>
+<td align="left">0.9996</td>
+<td align="left">0.9996</td>
+<td align="left">0.9726</td>
+<td align="left">0.9726</td>
+</tr>
+<tr class="even">
+<td align="left">Power_no_control</td>
+<td align="left">0.9974</td>
+<td align="left">0.9974</td>
+<td align="left">0.9839</td>
+<td align="left">0.9838</td>
+</tr>
+<tr class="odd">
+<td align="left">CoverageProb</td>
+<td align="left">0.9165</td>
+<td align="left">0.9165</td>
+<td align="left">0.9512</td>
+<td align="left">0.9512</td>
+</tr>
+<tr class="even">
+<td align="left">FDR_control</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0.0019</td>
+<td align="left">0.0187</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision_control</td>
+<td align="left">0.9903</td>
+<td align="left">0.9974</td>
+<td align="left">0.9597</td>
+<td align="left">0.9854</td>
+</tr>
+<tr class="even">
+<td align="left">Power_control</td>
+<td align="left">0.9309</td>
+<td align="left">0.9818</td>
+<td align="left">0.7004</td>
+<td align="left">0.9082</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="illustration-on-the-posterior-mean" class="section level1">
+<h1>illustration on the posterior mean</h1>
+<p>Dense case</p>
+<pre class="r"><code>n_rep=1
+  Y_result = readRDS(file.path(rpath,paste(&quot;simy&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+  datsim = readRDS(file.path(dpath,paste(&quot;data&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+  n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
+  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_beta = apply(beta_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>  M_result = readRDS(file.path(rpath,paste(&quot;simm&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
+  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
+  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_alpha = apply(alpha_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Sparse case</p>
+<pre class="r"><code>  Y_result = readRDS(file.path(rpath2,paste(&quot;simy&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+  datsim = readRDS(file.path(dpath2,paste(&quot;data&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+  n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
+  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_beta = apply(beta_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>  M_result = readRDS(file.path(rpath2,paste(&quot;simm&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
+  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
+  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_alpha = apply(alpha_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -580,19 +846,24 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] BayesGPfit_1.1.0 lattice_0.20-41  workflowr_1.6.2 
+ [1] RSpectra_0.16-0   cluster_2.1.2     mvtnorm_1.1-1     Matrix_1.3-2     
+ [5] MASS_7.3-53.1     viridis_0.6.1     viridisLite_0.4.0 ggplot2_3.3.3    
+ [9] BayesGPfit_1.1.0  lattice_0.20-41   workflowr_1.6.2  
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.6        pillar_1.6.1      compiler_4.0.5    bslib_0.2.5.1    
- [5] later_1.2.0       jquerylib_0.1.4   git2r_0.28.0      highr_0.9        
- [9] tools_4.0.5       digest_0.6.27     jsonlite_1.7.2    evaluate_0.14    
-[13] lifecycle_1.0.0   tibble_3.1.2      pkgconfig_2.0.3   rlang_0.4.11     
-[17] yaml_2.2.1        xfun_0.23         stringr_1.4.0     knitr_1.33       
-[21] fs_1.5.0          vctrs_0.3.8       sass_0.4.0        rprojroot_2.0.2  
-[25] grid_4.0.5        glue_1.4.2        R6_2.5.0          fansi_0.5.0      
-[29] rmarkdown_2.9     magrittr_2.0.1    whisker_0.4       promises_1.2.0.1 
-[33] ellipsis_0.3.2    htmltools_0.5.1.1 httpuv_1.6.1      utf8_1.2.1       
-[37] stringi_1.6.1     crayon_1.4.1     </code></pre>
+ [1] tidyselect_1.1.1  xfun_0.23         bslib_0.2.5.1     purrr_0.3.4      
+ [5] colorspace_2.0-1  vctrs_0.3.8       generics_0.1.0    htmltools_0.5.1.1
+ [9] yaml_2.2.1        utf8_1.2.1        rlang_0.4.11      jquerylib_0.1.4  
+[13] later_1.2.0       pillar_1.6.1      glue_1.4.2        withr_2.4.2      
+[17] DBI_1.1.1         lifecycle_1.0.0   stringr_1.4.0     munsell_0.5.0    
+[21] gtable_0.3.0      evaluate_0.14     labeling_0.4.2    knitr_1.33       
+[25] httpuv_1.6.1      fansi_0.5.0       highr_0.9         Rcpp_1.0.6       
+[29] promises_1.2.0.1  scales_1.1.1      jsonlite_1.7.2    farver_2.1.0     
+[33] fs_1.5.0          gridExtra_2.3     digest_0.6.27     stringi_1.6.1    
+[37] dplyr_1.0.6       grid_4.0.5        rprojroot_2.0.2   tools_4.0.5      
+[41] magrittr_2.0.1    sass_0.4.0        tibble_3.1.2      crayon_1.4.1     
+[45] whisker_0.4       pkgconfig_2.0.3   ellipsis_0.3.2    assertthat_0.2.1 
+[49] rmarkdown_2.9     R6_2.5.0          git2r_0.28.0      compiler_4.0.5   </code></pre>
 </div>
 </div>
 
