@@ -1,7 +1,7 @@
-name: "BMA_analysis"
+name: BMA_analysis
 output_dir: ../docs
 navbar:
-  title: "BMA_analysis"
+  title: BMA_analysis
   left:
   - text: Home
     href: index.html
@@ -11,6 +11,10 @@ navbar:
     href: license.html
   - text: Simulation1
     href: 2021-09-24_simulations_denseBMA1.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/yuliangxu/BMA_analysis
 output:
   workflowr::wflow_html:
     toc: yes
