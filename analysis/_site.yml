@@ -9,6 +9,8 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  - text: Simulation1
+    href: 2021-09-24_simulations_denseBMA1.html
 output:
   workflowr::wflow_html:
     toc: yes
