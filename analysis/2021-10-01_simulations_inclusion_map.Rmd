@@ -1,0 +1,197 @@
+---
+title: "2021-10-01_simulations_inclusion_map"
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(BayesGPfit)
+# rpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA1/sim_result"
+dpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA1/data"
+dpath2 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-26_simulations_sparseBMA1"
+rpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA1/sim_result"
+rpath2 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-26_simulations_sparseBMA1/sim_result2"
+num_region = 4
+side = 64
+region_idx = vector("list",num_region)
+grids = GP.generate.grids(d=2L,num_grids=side)
+grids = as.data.frame(grids)
+library(ggplot2)
+library(viridis)
+source("/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/Soft_thresholding/STGP_code/Mediation_Analysis/BMA_pkg/R/MA_data_generation.R", echo=TRUE)
+idx_mat = matrix(1:(side*side),ncol = num_region)
+idx_matr = matrix(1:(side*side),ncol = 64)
+p_length = NULL
+region_idx[[1]] = intersect(idx_matr[1:32,],idx_mat[,1:2])
+region_idx[[2]] = intersect(idx_matr[33:64,],idx_mat[,1:2])
+region_idx[[3]] = intersect(idx_matr[1:32,],idx_mat[,3:4])
+region_idx[[4]] = intersect(idx_matr[33:64,],idx_mat[,3:4])
+basis_sq = generate_sq_basis(grids, region_idx,a = 0.01,b = 10)
+```
+
+
+
+```{r total, include = FALSE}
+apath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/"
+result1 <- readRDS(file.path(apath,"2021-09-24_simulations_denseBMA1/analysis_result_inclusion_20.rds"))
+result2 <- readRDS(file.path(apath,"2021-09-26_simulations_sparseBMA1/analysis_result_inclusion_20_2.rds"))
+result3 <- readRDS(file.path(apath,"2021-09-26_simulations_sparseBMA1/analysis_result_inclusion_map2_fdr15.rds"))
+cat_names = c("pos_mean","inclusion_(fdr_tuned)","inclusion_0.5")
+mse_names = c("inclusion_(fdr_tuned)_1","inclusion_(fdr_tuned)_0",
+              "inclusion_0.5_1","inclusion_0.5_0")
+type_names = c("FDR","Precision","Power")
+var_names = c("beta","alpha","total")
+row_names = do.call(paste,expand.grid(type_names,cat_names))
+
+tab_beta = matrix(NA,nrow = 9,ncol=3)
+rownames(tab_beta) = row_names
+colnames(tab_beta) = c("Dense20","Sparse20","Sparse15")
+tab_alpha = tab_total = tab_beta
+
+tab_mse = matrix(NA,nrow=4*3,ncol=3)
+rownames(tab_mse) = do.call(paste,expand.grid(var_names,mse_names))
+colnames(tab_mse) = c("Dense20","Sparse20","Sparse15")
+
+analyze = function(result){
+  re1 = NULL
+  for(i in 1:3){
+    re1 = rbind(re1,apply(result[[i]],2,mean))
+  }
+  return(round(re1, digits = 4))
+}
+
+tab_beta[,1] = c(analyze(result1[1:3]))
+tab_beta[,2] = c(analyze(result2[1:3]))
+tab_beta[,3] = c(analyze(result3[1:3]))
+
+tab_alpha[,1] = c(analyze(result1[5:7]))
+tab_alpha[,2] = c(analyze(result2[5:7]))
+tab_alpha[,3] = c(analyze(result3[5:7]))
+
+tab_total[,1] = c(analyze(result1[9:11]))
+tab_total[,2] = c(analyze(result2[9:11]))
+tab_total[,3] = c(analyze(result3[9:11]))
+
+analyze_mse = function(result){
+  re1 = NULL
+  for(i in c(4,8,12)){
+    re1 = rbind(re1,apply(result[[i]],2,mean))
+  }
+  return(round(re1, digits = 4))
+}
+
+tab_mse[,1] = c(analyze_mse(result1))
+tab_mse[,2] = c(analyze_mse(result2))
+tab_mse[,3] = c(analyze_mse(result3))
+
+
+```
+
+# Explain on the mcmc result analysis method
+
+In this analysis of the simulated mcmc samples, 2000 mcmc samples are used for beta, 200 mcmc samples are used for alpha. Total indirect effect used 200 thinned samples from beta and 200 samples in alpha.
+
+Content of the analysis:
+
+1. Inclusion probability for all samples for every location P(beta(s)==0)
+2.Get a threshold on P(beta(s)==0) based on the inclusion probability to make FDR~0.1 
+  (try both thresh =0.5 or thresh tuned to FDR~0.1)
+3. Point estimation for beta for all non-selected region and selected region. For selected region
+4. FDR, Precision, Power, for the inclusion map
+5. MSE given inclusion map = 0 (null) or 1 (non null)
+
+
+# Tables of the mcmc result analyzed and summarized
+
+## result for beta
+```{r}
+knitr::kable(tab_beta)
+```
+
+## result for alpha
+```{r}
+knitr::kable(tab_alpha)
+```
+
+## result for total indirect effect
+```{r}
+knitr::kable(tab_total)
+```
+
+## result for MSE_null and MSE_non_null
+```{r}
+knitr::kable(tab_mse)
+```
+
+
+
+# Explain on simulation setting
+
+I run 2 set of simulations, each with 100 replicates, one replicate being a dataset of n=1000. The true image consists of 64 x 64 pixels, evenly divided into 4 regions, the number of basis functions for each region is 231. Total p = 4096, total L= 924.
+
+In the first simulation, there is ONE cluster of signals within each region for both true alpha and beta. This will be denoted as "dense" in the result table.
+
+```{r}
+datsim = readRDS(file.path(dpath,"data1.rds"))
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim$beta_test_ST),shape=15,size=2) + scale_color_viridis()
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim$alpha_test_ST),shape=15,size=2) + scale_color_viridis()
+```
+
+In the first simulation, there is TWO cluster of signals within each region for both true alpha and beta. This will be denoted as "sparse" in the result table.
+```{r}
+datsim2 = readRDS(file.path(dpath2,"data1.rds"))
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$beta_test_ST),shape=15,size=2) + scale_color_viridis()
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$alpha_test_ST),shape=15,size=2) + scale_color_viridis()
+```
+
+In addition, in the FDR control procedure, the value delta affects the controlled FDR, so is the sample size. In the result below, I reported 2 result for each simulation when setting delta to 0.1 and 0.01.
+The number of samples used for beta is 2000, and for alpha is 200. For beta, the MCMC sample is thinned, taken once in every 10 samples.
+
+
+# illustration on the posterior mean
+Dense case
+
+```{r}
+n_rep=1
+  Y_result = readRDS(file.path(rpath,paste("simy",n_rep,".rds",sep="") ))
+  datsim = readRDS(file.path(dpath,paste("data",n_rep,".rds",sep="") ))
+  n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
+  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_beta = apply(beta_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()
+```
+
+```{r}
+  M_result = readRDS(file.path(rpath,paste("simm",n_rep,".rds",sep="") ))
+  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
+  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
+  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_alpha = apply(alpha_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()
+```
+
+Sparse case
+
+
+```{r}
+  Y_result = readRDS(file.path(rpath2,paste("simy",n_rep,".rds",sep="") ))
+  datsim = readRDS(file.path(dpath2,paste("data",n_rep,".rds",sep="") ))
+  n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
+  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_beta = apply(beta_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()
+```
+
+```{r}
+  M_result = readRDS(file.path(rpath2,paste("simm",n_rep,".rds",sep="") ))
+  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
+  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
+  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_alpha = apply(alpha_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()
+```

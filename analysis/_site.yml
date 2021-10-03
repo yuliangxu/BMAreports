@@ -5,12 +5,10 @@ navbar:
   left:
   - text: Home
     href: index.html
-  - text: About
-    href: about.html
-  - text: License
-    href: license.html
-  - text: Simulation1
+  - text: Analysis1
     href: 2021-09-24_simulations_denseBMA1.html
+  - text: Analysis2
+    href: 2021-10-01_simulations_inclusion_map.html
   right:
   - icon: fa-github
     text: Source code
