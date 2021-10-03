@@ -11,7 +11,7 @@
 
 
 
-<title>2021-09-24_simulations_denseBMA1</title>
+<title>2021-10-01_simulations_inclusion_map</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -356,7 +356,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">2021-09-24_simulations_denseBMA1</h1>
+<h1 class="title toc-ignore">2021-10-01_simulations_inclusion_map</h1>
 
 </div>
 
@@ -509,7 +509,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/2021-09-24_simulations_denseBMA1.Rmd</code>) and HTML (<code>docs/2021-09-24_simulations_denseBMA1.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/2021-10-01_simulations_inclusion_map.Rmd</code>) and HTML (<code>docs/2021-10-01_simulations_inclusion_map.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -535,87 +535,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/aba1c9ac15ddea122e62fd7d6ba7ccad6d935d6f/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">aba1c9a</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/59014d6410c73f748472f00f3efcc71436972091/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/3715c06d1888506f2523e0b94d1ebfb661bc3ae7/analysis/2021-09-24_simulations_denseBMA1.Rmd" target="_blank">3715c06</a>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/33d7e5348098b6c8ee73eb79c8a01c4a345f53c4/analysis/2021-10-01_simulations_inclusion_map.Rmd" target="_blank">33d7e53</a>
 </td>
 <td>
 yuliangxu
 </td>
 <td>
-2021-09-27
+2021-10-03
 </td>
 <td>
-Start my new project
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/638dcb17a99c063204055b127a1d85da9cd954f2/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">638dcb1</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-26
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/eadaea13dcf76f8c17abddf252e843e78655ac0b/analysis/2021-09-24_simulations_denseBMA1.Rmd" target="_blank">eadaea1</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-26
-</td>
-<td>
-Start my new project
+Second Analysis using inclusion map
 </td>
 </tr>
 </tbody>
@@ -625,362 +557,334 @@ Start my new project
 </div>
 </div>
 </div>
-<div id="explain-on-the-row-names-in-the-following-table" class="section level1">
-<h1>Explain on the row names in the following table</h1>
+<div id="explain-on-the-mcmc-result-analysis-method" class="section level1">
+<h1>Explain on the mcmc result analysis method</h1>
+<p>In this analysis of the simulated mcmc samples, 2000 mcmc samples are used for beta, 200 mcmc samples are used for alpha. Total indirect effect used 200 thinned samples from beta and 200 samples in alpha.</p>
+<p>Content of the analysis:</p>
+<ol style="list-style-type: decimal">
+<li>Inclusion probability for all samples for every location P(beta(s)==0) 2.Get a threshold on P(beta(s)==0) based on the inclusion probability to make FDR~0.1 (try both thresh =0.5 or thresh tuned to FDR~0.1)</li>
+<li>Point estimation for beta for all non-selected region and selected region. For selected region</li>
+<li>FDR, Precision, Power, for the inclusion map</li>
+<li>MSE given inclusion map = 0 (null) or 1 (non null)</li>
+</ol>
+</div>
+<div id="tables-of-the-mcmc-result-analyzed-and-summarized" class="section level1">
+<h1>Tables of the mcmc result analyzed and summarized</h1>
+<div id="result-for-beta" class="section level2">
+<h2>result for beta</h2>
+<pre class="r"><code>knitr::kable(tab_beta)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Dense20</th>
+<th align="right">Sparse20</th>
+<th align="right">Sparse15</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FDR pos_mean</td>
+<td align="right">0.6046</td>
+<td align="right">0.6465</td>
+<td align="right">0.6465</td>
+</tr>
+<tr class="even">
+<td align="left">Precision pos_mean</td>
+<td align="right">0.6779</td>
+<td align="right">0.7048</td>
+<td align="right">0.7048</td>
+</tr>
+<tr class="odd">
+<td align="left">Power pos_mean</td>
+<td align="right">0.9853</td>
+<td align="right">0.9813</td>
+<td align="right">0.9813</td>
+</tr>
+<tr class="even">
+<td align="left">FDR inclusion_(fdr_tuned)</td>
+<td align="right">0.1979</td>
+<td align="right">0.1948</td>
+<td align="right">0.1471</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision inclusion_(fdr_tuned)</td>
+<td align="right">0.9367</td>
+<td align="right">0.9501</td>
+<td align="right">0.9587</td>
+</tr>
+<tr class="even">
+<td align="left">Power inclusion_(fdr_tuned)</td>
+<td align="right">0.9291</td>
+<td align="right">0.9130</td>
+<td align="right">0.9003</td>
+</tr>
+<tr class="odd">
+<td align="left">FDR inclusion_0.5</td>
+<td align="right">0.3101</td>
+<td align="right">0.2537</td>
+<td align="right">0.2537</td>
+</tr>
+<tr class="even">
+<td align="left">Precision inclusion_0.5</td>
+<td align="right">0.8993</td>
+<td align="right">0.9367</td>
+<td align="right">0.9367</td>
+</tr>
+<tr class="odd">
+<td align="left">Power inclusion_0.5</td>
+<td align="right">0.9521</td>
+<td align="right">0.9252</td>
+<td align="right">0.9252</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="result-for-alpha" class="section level2">
+<h2>result for alpha</h2>
+<pre class="r"><code>knitr::kable(tab_alpha)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Dense20</th>
+<th align="right">Sparse20</th>
+<th align="right">Sparse15</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FDR pos_mean</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="even">
+<td align="left">Precision pos_mean</td>
+<td align="right">0.9999</td>
+<td align="right">0.9982</td>
+<td align="right">0.9982</td>
+</tr>
+<tr class="odd">
+<td align="left">Power pos_mean</td>
+<td align="right">0.9992</td>
+<td align="right">0.9897</td>
+<td align="right">0.9897</td>
+</tr>
+<tr class="even">
+<td align="left">FDR inclusion_(fdr_tuned)</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision inclusion_(fdr_tuned)</td>
+<td align="right">0.9998</td>
+<td align="right">0.9981</td>
+<td align="right">0.9981</td>
+</tr>
+<tr class="even">
+<td align="left">Power inclusion_(fdr_tuned)</td>
+<td align="right">0.9986</td>
+<td align="right">0.9891</td>
+<td align="right">0.9891</td>
+</tr>
+<tr class="odd">
+<td align="left">FDR inclusion_0.5</td>
+<td align="right">0.5201</td>
+<td align="right">0.3442</td>
+<td align="right">0.3442</td>
+</tr>
+<tr class="even">
+<td align="left">Precision inclusion_0.5</td>
+<td align="right">0.8474</td>
+<td align="right">0.8886</td>
+<td align="right">0.8886</td>
+</tr>
+<tr class="odd">
+<td align="left">Power inclusion_0.5</td>
+<td align="right">0.9937</td>
+<td align="right">0.7582</td>
+<td align="right">0.7582</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="result-for-total-indirect-effect" class="section level2">
+<h2>result for total indirect effect</h2>
+<pre class="r"><code>knitr::kable(tab_total)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Dense20</th>
+<th align="right">Sparse20</th>
+<th align="right">Sparse15</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FDR pos_mean</td>
+<td align="right">0.0000</td>
+<td align="right">0.1608</td>
+<td align="right">0.1608</td>
+</tr>
+<tr class="even">
+<td align="left">Precision pos_mean</td>
+<td align="right">0.9996</td>
+<td align="right">0.9726</td>
+<td align="right">0.9726</td>
+</tr>
+<tr class="odd">
+<td align="left">Power pos_mean</td>
+<td align="right">0.9974</td>
+<td align="right">0.9839</td>
+<td align="right">0.9839</td>
+</tr>
+<tr class="even">
+<td align="left">FDR inclusion_(fdr_tuned)</td>
+<td align="right">0.0000</td>
+<td align="right">0.0187</td>
+<td align="right">0.0187</td>
+</tr>
+<tr class="odd">
+<td align="left">Precision inclusion_(fdr_tuned)</td>
+<td align="right">0.9974</td>
+<td align="right">0.9854</td>
+<td align="right">0.9854</td>
+</tr>
+<tr class="even">
+<td align="left">Power inclusion_(fdr_tuned)</td>
+<td align="right">0.9818</td>
+<td align="right">0.9081</td>
+<td align="right">0.9081</td>
+</tr>
+<tr class="odd">
+<td align="left">FDR inclusion_0.5</td>
+<td align="right">0.5201</td>
+<td align="right">0.3735</td>
+<td align="right">0.3735</td>
+</tr>
+<tr class="even">
+<td align="left">Precision inclusion_0.5</td>
+<td align="right">0.8474</td>
+<td align="right">0.9169</td>
+<td align="right">0.9169</td>
+</tr>
+<tr class="odd">
+<td align="left">Power inclusion_0.5</td>
+<td align="right">0.9937</td>
+<td align="right">0.9411</td>
+<td align="right">0.9411</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="result-for-mse_null-and-mse_non_null" class="section level2">
+<h2>result for MSE_null and MSE_non_null</h2>
+<pre class="r"><code>knitr::kable(tab_mse)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Dense20</th>
+<th align="right">Sparse20</th>
+<th align="right">Sparse15</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">beta inclusion_(fdr_tuned)_1</td>
+<td align="right">0.0120</td>
+<td align="right">0.0029</td>
+<td align="right">0.0028</td>
+</tr>
+<tr class="even">
+<td align="left">alpha inclusion_(fdr_tuned)_1</td>
+<td align="right">0.0000</td>
+<td align="right">0.0001</td>
+<td align="right">0.0001</td>
+</tr>
+<tr class="odd">
+<td align="left">total inclusion_(fdr_tuned)_1</td>
+<td align="right">0.0017</td>
+<td align="right">0.0004</td>
+<td align="right">0.0004</td>
+</tr>
+<tr class="even">
+<td align="left">beta inclusion_(fdr_tuned)_0</td>
+<td align="right">0.0014</td>
+<td align="right">0.0003</td>
+<td align="right">0.0004</td>
+</tr>
+<tr class="odd">
+<td align="left">alpha inclusion_(fdr_tuned)_0</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="even">
+<td align="left">total inclusion_(fdr_tuned)_0</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="odd">
+<td align="left">beta inclusion_0.5_1</td>
+<td align="right">0.0127</td>
+<td align="right">0.0030</td>
+<td align="right">0.0030</td>
+</tr>
+<tr class="even">
+<td align="left">alpha inclusion_0.5_1</td>
+<td align="right">0.0000</td>
+<td align="right">0.0001</td>
+<td align="right">0.0001</td>
+</tr>
+<tr class="odd">
+<td align="left">total inclusion_0.5_1</td>
+<td align="right">0.0017</td>
+<td align="right">0.0004</td>
+<td align="right">0.0004</td>
+</tr>
+<tr class="even">
+<td align="left">beta inclusion_0.5_0</td>
+<td align="right">0.0007</td>
+<td align="right">0.0002</td>
+<td align="right">0.0002</td>
+</tr>
+<tr class="odd">
+<td align="left">alpha inclusion_0.5_0</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="even">
+<td align="left">total inclusion_0.5_0</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+<td align="right">0.0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="explain-on-simulation-setting" class="section level1">
+<h1>Explain on simulation setting</h1>
 <p>I run 2 set of simulations, each with 100 replicates, one replicate being a dataset of n=1000. The true image consists of 64 x 64 pixels, evenly divided into 4 regions, the number of basis functions for each region is 231. Total p = 4096, total L= 924.</p>
 <p>In the first simulation, there is ONE cluster of signals within each region for both true alpha and beta. This will be denoted as “dense” in the result table.</p>
 <pre class="r"><code>datsim = readRDS(file.path(dpath,&quot;data1.rds&quot;))
 ggplot(grids) + geom_point(aes(x1, x2, color = datsim$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
-Past versions of unnamed-chunk-1-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
-Past versions of unnamed-chunk-1-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-2.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the first simulation, there is TWO cluster of signals within each region for both true alpha and beta. This will be denoted as “sparse” in the result table.</p>
 <pre class="r"><code>datsim2 = readRDS(file.path(dpath2,&quot;data1.rds&quot;))
 ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
-Past versions of unnamed-chunk-2-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-2">
-Past versions of unnamed-chunk-2-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-2.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In addition, in the FDR control procedure, the value delta affects the controlled FDR, so is the sample size. In the result below, I reported 2 result for each simulation when setting delta to 0.1 and 0.01. The number of samples used for beta is 2000, and for alpha is 200. For beta, the MCMC sample is thinned, taken once in every 10 samples.</p>
-</div>
-<div id="result-for-beta" class="section level1">
-<h1>result for beta</h1>
-<pre class="r"><code>knitr::kable(t(tab_beta))</code></pre>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">Analysis</td>
-<td align="left">dense:delta=0.1</td>
-<td align="left">dense:delta=0.01</td>
-<td align="left">sparse:delta=0.1</td>
-<td align="left">sparse:delta=0.01</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_no_control</td>
-<td align="left">0.6046</td>
-<td align="left">0.6046</td>
-<td align="left">0.6465</td>
-<td align="left">0.6465</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_no_control</td>
-<td align="left">0.6779</td>
-<td align="left">0.6779</td>
-<td align="left">0.7048</td>
-<td align="left">0.7048</td>
-</tr>
-<tr class="even">
-<td align="left">Power_no_control</td>
-<td align="left">0.9853</td>
-<td align="left">0.9853</td>
-<td align="left">0.9813</td>
-<td align="left">0.9813</td>
-</tr>
-<tr class="odd">
-<td align="left">CoverageProb</td>
-<td align="left">0.8468</td>
-<td align="left">0.8468</td>
-<td align="left">0.9304</td>
-<td align="left">0.9305</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_control</td>
-<td align="left">0.1265</td>
-<td align="left">0.192</td>
-<td align="left">0.0639</td>
-<td align="left">0.1308</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_control</td>
-<td align="left">0.9526</td>
-<td align="left">0.9381</td>
-<td align="left">0.969</td>
-<td align="left">0.961</td>
-</tr>
-<tr class="even">
-<td align="left">Power_control</td>
-<td align="left">0.9076</td>
-<td align="left">0.928</td>
-<td align="left">0.8683</td>
-<td align="left">0.8946</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="result-for-alpha" class="section level1">
-<h1>result for alpha</h1>
-<pre class="r"><code>knitr::kable(t(tab_alpha))</code></pre>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">Analysis</td>
-<td align="left">dense:delta=0.1</td>
-<td align="left">dense:delta=0.01</td>
-<td align="left">sparse:delta=0.1</td>
-<td align="left">sparse:delta=0.01</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_no_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_no_control</td>
-<td align="left">0.9999</td>
-<td align="left">0.9999</td>
-<td align="left">0.9982</td>
-<td align="left">0.9982</td>
-</tr>
-<tr class="even">
-<td align="left">Power_no_control</td>
-<td align="left">0.9992</td>
-<td align="left">0.9992</td>
-<td align="left">0.9897</td>
-<td align="left">0.9897</td>
-</tr>
-<tr class="odd">
-<td align="left">CoverageProb</td>
-<td align="left">0.8816</td>
-<td align="left">0.8816</td>
-<td align="left">0.8547</td>
-<td align="left">0.8547</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_control</td>
-<td align="left">0.9963</td>
-<td align="left">0.9998</td>
-<td align="left">0.9979</td>
-<td align="left">0.9981</td>
-</tr>
-<tr class="even">
-<td align="left">Power_control</td>
-<td align="left">0.9737</td>
-<td align="left">0.9986</td>
-<td align="left">0.988</td>
-<td align="left">0.9891</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="result-for-total-indirect-effect" class="section level1">
-<h1>result for total indirect effect</h1>
-<pre class="r"><code>knitr::kable(t(tab_total))</code></pre>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">Analysis</td>
-<td align="left">dense:delta=0.1</td>
-<td align="left">dense:delta=0.01</td>
-<td align="left">sparse:delta=0.1</td>
-<td align="left">sparse:delta=0.01</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_no_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0.1608</td>
-<td align="left">0.1609</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_no_control</td>
-<td align="left">0.9996</td>
-<td align="left">0.9996</td>
-<td align="left">0.9726</td>
-<td align="left">0.9726</td>
-</tr>
-<tr class="even">
-<td align="left">Power_no_control</td>
-<td align="left">0.9974</td>
-<td align="left">0.9974</td>
-<td align="left">0.9839</td>
-<td align="left">0.9838</td>
-</tr>
-<tr class="odd">
-<td align="left">CoverageProb</td>
-<td align="left">0.9165</td>
-<td align="left">0.9165</td>
-<td align="left">0.9512</td>
-<td align="left">0.9512</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0.0019</td>
-<td align="left">0.0187</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_control</td>
-<td align="left">0.9903</td>
-<td align="left">0.9974</td>
-<td align="left">0.9597</td>
-<td align="left">0.9854</td>
-</tr>
-<tr class="even">
-<td align="left">Power_control</td>
-<td align="left">0.9309</td>
-<td align="left">0.9818</td>
-<td align="left">0.7004</td>
-<td align="left">0.9082</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="illustration-on-the-posterior-mean" class="section level1">
 <h1>illustration on the posterior mean</h1>
@@ -993,88 +897,14 @@ yuliangxu
   beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
   pos_mean_beta = apply(beta_sample,1,mean)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-6-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>  M_result = readRDS(file.path(rpath,paste(&quot;simm&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
   n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
   theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
   alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
   pos_mean_alpha = apply(alpha_sample,1,mean)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
-Past versions of unnamed-chunk-7-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-7-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-7-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Sparse case</p>
 <pre class="r"><code>  Y_result = readRDS(file.path(rpath2,paste(&quot;simy&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
   datsim = readRDS(file.path(dpath2,paste(&quot;data&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
@@ -1083,88 +913,14 @@ yuliangxu
   beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
   pos_mean_beta = apply(beta_sample,1,mean)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
-Past versions of unnamed-chunk-8-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-8-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-8-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>  M_result = readRDS(file.path(rpath2,paste(&quot;simm&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
   n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
   theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
   alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
   pos_mean_alpha = apply(alpha_sample,1,mean)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-9-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-01_simulations_inclusion_map.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
