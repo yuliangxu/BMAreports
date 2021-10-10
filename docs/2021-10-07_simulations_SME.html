@@ -384,7 +384,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-10-09
+<strong>Last updated:</strong> 2021-10-10
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -475,16 +475,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomyuliangxuBMAanalysistree60886d9dcb8b127990cb9445f7024228783173cetargetblank60886d9a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/yuliangxu/BMA_analysis/tree/60886d9dcb8b127990cb9445f7024228783173ce" target="_blank">60886d9</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomyuliangxuBMAanalysistree170cc56750a6222973b9c13a60d6764d56a6efb9targetblank170cc56a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/yuliangxu/BMA_analysis/tree/170cc56750a6222973b9c13a60d6764d56a6efb9" target="_blank">170cc56</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomyuliangxuBMAanalysistree60886d9dcb8b127990cb9445f7024228783173cetargetblank60886d9a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomyuliangxuBMAanalysistree170cc56750a6222973b9c13a60d6764d56a6efb9targetblank170cc56a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/yuliangxu/BMA_analysis/tree/60886d9dcb8b127990cb9445f7024228783173ce" target="_blank">60886d9</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/yuliangxu/BMA_analysis/tree/170cc56750a6222973b9c13a60d6764d56a6efb9" target="_blank">170cc56</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -546,6 +546,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/170cc56750a6222973b9c13a60d6764d56a6efb9/analysis/2021-10-07_simulations_SME.Rmd" target="_blank">170cc56</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-10
+</td>
+<td>
+Second Analysis using inclusion map
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/2021-10-07_simulations_SME.html" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/yuliangxu/BMA_analysis/blob/60886d9dcb8b127990cb9445f7024228783173ce/analysis/2021-10-07_simulations_SME.Rmd" target="_blank">60886d9</a>
 </td>
 <td>
@@ -574,23 +608,26 @@ Second Analysis using inclusion map
 <pre class="r"><code>dense = result1$sum_SME
 dense2 = result3$sum_SME
 dense2_2 = result3_2[,1:5]
-ana_names = c(&quot;dense&quot;,&quot;sparse&quot;,&quot;dense2&quot;,&quot;dense2&quot;)
-tab_sme = matrix(NA,nrow=4,ncol=5)
+dense2_3 = result3_3[,1:5]
+ana_names = c(&quot;dense&quot;,&quot;sparse&quot;,&quot;dense2&quot;,&quot;dense2&quot;,&quot;dense2&quot;)
+tab_sme = matrix(NA,nrow=5,ncol=5)
 colnames(tab_sme) = colnames(dense)
 rownames(tab_sme) = ana_names
-dat_param = matrix(NA,nrow=4,ncol=3)
+dat_param = matrix(NA,nrow=5,ncol=3)
 colnames(dat_param) = c(&quot;n&quot;,&quot;sigma_M&quot;,&quot;sigma_Y&quot;)
 rownames(dat_param) = ana_names
 dat_param[1,] = c(length(datsim$Y), datsim$sigma_m, datsim$sigma_y)
 dat_param[2,] = c(length(datsim2$Y), datsim2$sigma_m, datsim2$sigma_y)
 dat_param[3,] = c(length(datsim3$Y), datsim3$sigma_m, datsim3$sigma_y)
 dat_param[4,] = c(length(datsim4$Y), datsim4$sigma_m, datsim4$sigma_y)
+dat_param[5,] = c(length(datsim4_3$Y), datsim4_3$sigma_m, datsim4_3$sigma_y)
 
 tab_sme[1,] = round(apply(dense,2,mean), digits=4)
 sparse = result2$sum_SME
 tab_sme[2,] = round(apply(sparse,2,mean), digits=4)
 tab_sme[3,] = round(apply(dense2,2,mean), digits=4)
 tab_sme[4,] = round(apply(dense2_2,2,mean), digits=4)
+tab_sme[5,] = round(apply(dense2_3,2,mean), digits=4)
 knitr::kable(cbind(dat_param,tab_sme))</code></pre>
 <table>
 <thead>
@@ -651,6 +688,17 @@ knitr::kable(cbind(dat_param,tab_sme))</code></pre>
 <td align="right">4e-04</td>
 <td align="right">0.0484</td>
 </tr>
+<tr class="odd">
+<td align="left">dense2</td>
+<td align="right">5000</td>
+<td align="right">2</td>
+<td align="right">0.5</td>
+<td align="right">0.0703</td>
+<td align="right">0.9983</td>
+<td align="right">0.9966</td>
+<td align="right">0e+00</td>
+<td align="right">0.0115</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -660,14 +708,125 @@ knitr::kable(cbind(dat_param,tab_sme))</code></pre>
 <h2>True images</h2>
 <pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
 <p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-1.png" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
 <p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-2">
+Past versions of unnamed-chunk-2-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-2.png" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>datsim4$total_test_ST = datsim4$beta_test_ST * datsim4$alpha_test_ST
 ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$total_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
 <p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-3">
+Past versions of unnamed-chunk-2-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-3.png" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="example-posterior-sample-under-sigma_y0.5" class="section level2">
-<h2>Example posterior sample under sigma_Y=0.5</h2>
+</div>
+</div>
+<div id="example-posterior-sample-for-dense2-n1000" class="section level2">
+<h2>Example posterior sample for dense2, n=1000</h2>
 <pre class="r"><code>L_vec = ceiling(unlist(lapply(region_idx, length))*0.2)
   basis_sq = readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/matern_basis.rds&quot;)
 Y_result &lt;- readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2/simy1.rds&quot;)
@@ -678,6 +837,43 @@ n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
   grids = as.data.frame(grids)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
 <p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
+Past versions of unnamed-chunk-3-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-3-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-1.png" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>M_result = M_result &lt;- readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2/simm1.rds&quot;)
   n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
   theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
@@ -685,9 +881,104 @@ n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
   pos_mean_alpha = apply(alpha_sample,1,mean)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
 <p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-2">
+Past versions of unnamed-chunk-3-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-3-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-2.png" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>  total_sample1 = beta_sample[,1]*alpha_sample[,1]
   ggplot(grids) + geom_point(aes(x1, x2, color = total_sample1 ),shape=15,size=2) + scale_color_viridis()</code></pre>
 <p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-3">
+Past versions of unnamed-chunk-3-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-3-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/122b88a0825719d76dd43ea69470f5e8fccc8c4c/docs/figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-3.png" target="_blank">122b88a</a>
+</td>
+<td>
+yuliangxu
+</td>
+<td>
+2021-10-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="example-posterior-sample-for-dense2-n5000" class="section level2">
+<h2>Example posterior sample for dense2, n=5000</h2>
+<pre class="r"><code>Y_result &lt;- readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_3/simy1.rds&quot;)
+n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
+  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_beta = apply(beta_sample,1,mean)
+  grids = as.data.frame(grids)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>M_result = M_result &lt;- readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_3/simm1.rds&quot;)
+  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
+  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
+  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_alpha = apply(alpha_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>  total_sample1 = beta_sample[,1]*alpha_sample[,1]
+  ggplot(grids) + geom_point(aes(x1, x2, color = total_sample1 ),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
