@@ -1,0 +1,116 @@
+---
+title: "2021-10-07_simulations_SME"
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(BayesGPfit)
+# rpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA1/sim_result"
+dpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA1/data"
+dpath2 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-26_simulations_sparseBMA1"
+dpath3 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/data4"
+dpath4 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2"
+rpath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-24_simulations_denseBMA1/sim_result"
+rpath2 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-26_simulations_sparseBMA1/sim_result2"
+rpath3 = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-09-26_simulations_sparseBMA1/sim_result2"
+num_region = 4
+side = 64
+region_idx = vector("list",num_region)
+grids = GP.generate.grids(d=2L,num_grids=side)
+grids = as.data.frame(grids)
+library(ggplot2)
+library(viridis)
+source("/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/Soft_thresholding/STGP_code/Mediation_Analysis/BMA_pkg/R/MA_data_generation.R", echo=TRUE)
+idx_mat = matrix(1:(side*side),ncol = num_region)
+idx_matr = matrix(1:(side*side),ncol = 64)
+p_length = NULL
+region_idx[[1]] = intersect(idx_matr[1:32,],idx_mat[,1:2])
+region_idx[[2]] = intersect(idx_matr[33:64,],idx_mat[,1:2])
+region_idx[[3]] = intersect(idx_matr[1:32,],idx_mat[,3:4])
+region_idx[[4]] = intersect(idx_matr[33:64,],idx_mat[,3:4])
+basis_sq = generate_sq_basis(grids, region_idx,a = 0.01,b = 10)
+apath = "/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations"
+result1 <- readRDS(file.path(apath,"2021-09-24_simulations_denseBMA1/analysis_result_SME.rds"))
+result2 <- readRDS(file.path(apath,"2021-09-26_simulations_sparseBMA1/analysis_result_SME2.rds"))
+result3 <- readRDS(file.path(apath,"2021-10-08_simulations_dense_4regions/analysis_result_SME4.rds"))
+result3_2 <- readRDS(file.path(apath,"2021-10-08_simulations_dense_4regions/sim_result4_2/analysis_result_SME4_2.rds"))
+datsim = readRDS(file.path(dpath,"data1.rds"))
+datsim2 = readRDS(file.path(dpath2,"data1.rds"))
+datsim3 = readRDS(file.path(dpath3,"data1.rds"))
+datsim4 = readRDS(file.path(dpath4,"data1.rds"))
+```
+
+
+For the dense case, FDR is tuned at 0.25 (beta), 0.2(alpha), 0.1(total).
+
+For the sparse case, FDR is tuned at 0.2 (beta), 0.2(alpha), 0.1(total).
+
+For the dense2 case, FDR is tuned as small as possible (before threshold gets too large
+and all pixels are mapped to 0.)
+
+For dense2 case, matern kernel is used.
+
+# Main result: Spatial Mediation Effect (SME)
+```{r}
+dense = result1$sum_SME
+dense2 = result3$sum_SME
+dense2_2 = result3_2[,1:5]
+ana_names = c("dense","sparse","dense2","dense2")
+tab_sme = matrix(NA,nrow=4,ncol=5)
+colnames(tab_sme) = colnames(dense)
+rownames(tab_sme) = ana_names
+dat_param = matrix(NA,nrow=4,ncol=3)
+colnames(dat_param) = c("n","sigma_M","sigma_Y")
+rownames(dat_param) = ana_names
+dat_param[1,] = c(length(datsim$Y), datsim$sigma_m, datsim$sigma_y)
+dat_param[2,] = c(length(datsim2$Y), datsim2$sigma_m, datsim2$sigma_y)
+dat_param[3,] = c(length(datsim3$Y), datsim3$sigma_m, datsim3$sigma_y)
+dat_param[4,] = c(length(datsim4$Y), datsim4$sigma_m, datsim4$sigma_y)
+
+tab_sme[1,] = round(apply(dense,2,mean), digits=4)
+sparse = result2$sum_SME
+tab_sme[2,] = round(apply(sparse,2,mean), digits=4)
+tab_sme[3,] = round(apply(dense2,2,mean), digits=4)
+tab_sme[4,] = round(apply(dense2_2,2,mean), digits=4)
+knitr::kable(cbind(dat_param,tab_sme))
+
+```
+
+# Some plots on the dense2 case.
+
+## True images
+
+```{r}
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$alpha_test_ST),shape=15,size=2) + scale_color_viridis()
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$beta_test_ST),shape=15,size=2) + scale_color_viridis()
+datsim4$total_test_ST = datsim4$beta_test_ST * datsim4$alpha_test_ST
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$total_test_ST),shape=15,size=2) + scale_color_viridis()
+```
+
+## Example posterior sample under sigma_Y=0.5
+
+```{r}
+L_vec = ceiling(unlist(lapply(region_idx, length))*0.2)
+  basis_sq = readRDS("/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/matern_basis.rds")
+Y_result <- readRDS("/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2/simy1.rds")
+n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
+  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_beta = apply(beta_sample,1,mean)
+  grids = as.data.frame(grids)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()
+M_result = M_result <- readRDS("/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2/simm1.rds")
+  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
+  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
+  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
+  pos_mean_alpha = apply(alpha_sample,1,mean)
+  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()
+  
+  total_sample1 = beta_sample[,1]*alpha_sample[,1]
+  ggplot(grids) + geom_point(aes(x1, x2, color = total_sample1 ),shape=15,size=2) + scale_color_viridis()
+```
+

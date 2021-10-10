@@ -9,6 +9,8 @@ navbar:
     href: 2021-09-24_simulations_denseBMA1.html
   - text: Analysis2
     href: 2021-10-01_simulations_inclusion_map.html
+  - text: Analysis3
+    href: 2021-10-07_simulations_SME.html
   right:
   - icon: fa-github
     text: Source code
