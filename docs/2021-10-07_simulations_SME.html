@@ -11,7 +11,7 @@
 
 
 
-<title>2021-09-24_simulations_denseBMA1</title>
+<title>2021-10-07_simulations_SME</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -359,7 +359,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">2021-09-24_simulations_denseBMA1</h1>
+<h1 class="title toc-ignore">2021-10-07_simulations_SME</h1>
 
 </div>
 
@@ -517,7 +517,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/2021-09-24_simulations_denseBMA1.Rmd</code>) and HTML (<code>docs/2021-09-24_simulations_denseBMA1.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/2021-10-07_simulations_SME.Rmd</code>) and HTML (<code>docs/2021-10-07_simulations_SME.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -543,104 +543,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/4b5a8d812b16469f12626a9ba4efea579f53fa37/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">4b5a8d8</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-10-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/aba1c9ac15ddea122e62fd7d6ba7ccad6d935d6f/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">aba1c9a</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/59014d6410c73f748472f00f3efcc71436972091/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/3715c06d1888506f2523e0b94d1ebfb661bc3ae7/analysis/2021-09-24_simulations_denseBMA1.Rmd" target="_blank">3715c06</a>
+<a href="https://github.com/yuliangxu/BMA_analysis/blob/60886d9dcb8b127990cb9445f7024228783173ce/analysis/2021-10-07_simulations_SME.Rmd" target="_blank">60886d9</a>
 </td>
 <td>
 yuliangxu
 </td>
 <td>
-2021-09-27
+2021-10-09
 </td>
 <td>
-Start my new project
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/yuliangxu/BMA_analysis/638dcb17a99c063204055b127a1d85da9cd954f2/docs/2021-09-24_simulations_denseBMA1.html" target="_blank">638dcb1</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-26
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/eadaea13dcf76f8c17abddf252e843e78655ac0b/analysis/2021-09-24_simulations_denseBMA1.Rmd" target="_blank">eadaea1</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-26
-</td>
-<td>
-Start my new project
+Second Analysis using inclusion map
 </td>
 </tr>
 </tbody>
@@ -650,546 +565,129 @@ Start my new project
 </div>
 </div>
 </div>
-<div id="explain-on-the-row-names-in-the-following-table" class="section level1">
-<h1>Explain on the row names in the following table</h1>
-<p>I run 2 set of simulations, each with 100 replicates, one replicate being a dataset of n=1000. The true image consists of 64 x 64 pixels, evenly divided into 4 regions, the number of basis functions for each region is 231. Total p = 4096, total L= 924.</p>
-<p>In the first simulation, there is ONE cluster of signals within each region for both true alpha and beta. This will be denoted as “dense” in the result table.</p>
-<pre class="r"><code>datsim = readRDS(file.path(dpath,&quot;data1.rds&quot;))
-ggplot(grids) + geom_point(aes(x1, x2, color = datsim$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
-Past versions of unnamed-chunk-1-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
-Past versions of unnamed-chunk-1-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-1-2.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>In the first simulation, there is TWO cluster of signals within each region for both true alpha and beta. This will be denoted as “sparse” in the result table.</p>
-<pre class="r"><code>datsim2 = readRDS(file.path(dpath2,&quot;data1.rds&quot;))
-ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
-Past versions of unnamed-chunk-2-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim2$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-2">
-Past versions of unnamed-chunk-2-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-2-2.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>In addition, in the FDR control procedure, the value delta affects the controlled FDR, so is the sample size. In the result below, I reported 2 result for each simulation when setting delta to 0.1 and 0.01. The number of samples used for beta is 2000, and for alpha is 200. For beta, the MCMC sample is thinned, taken once in every 10 samples.</p>
-</div>
-<div id="result-for-beta" class="section level1">
-<h1>result for beta</h1>
-<pre class="r"><code>knitr::kable(t(tab_beta))</code></pre>
+<p>For the dense case, FDR is tuned at 0.25 (beta), 0.2(alpha), 0.1(total).</p>
+<p>For the sparse case, FDR is tuned at 0.2 (beta), 0.2(alpha), 0.1(total).</p>
+<p>For the dense2 case, FDR is tuned as small as possible (before threshold gets too large and all pixels are mapped to 0.)</p>
+<p>For dense2 case, matern kernel is used.</p>
+<div id="main-result-spatial-mediation-effect-sme" class="section level1">
+<h1>Main result: Spatial Mediation Effect (SME)</h1>
+<pre class="r"><code>dense = result1$sum_SME
+dense2 = result3$sum_SME
+dense2_2 = result3_2[,1:5]
+ana_names = c(&quot;dense&quot;,&quot;sparse&quot;,&quot;dense2&quot;,&quot;dense2&quot;)
+tab_sme = matrix(NA,nrow=4,ncol=5)
+colnames(tab_sme) = colnames(dense)
+rownames(tab_sme) = ana_names
+dat_param = matrix(NA,nrow=4,ncol=3)
+colnames(dat_param) = c(&quot;n&quot;,&quot;sigma_M&quot;,&quot;sigma_Y&quot;)
+rownames(dat_param) = ana_names
+dat_param[1,] = c(length(datsim$Y), datsim$sigma_m, datsim$sigma_y)
+dat_param[2,] = c(length(datsim2$Y), datsim2$sigma_m, datsim2$sigma_y)
+dat_param[3,] = c(length(datsim3$Y), datsim3$sigma_m, datsim3$sigma_y)
+dat_param[4,] = c(length(datsim4$Y), datsim4$sigma_m, datsim4$sigma_y)
+
+tab_sme[1,] = round(apply(dense,2,mean), digits=4)
+sparse = result2$sum_SME
+tab_sme[2,] = round(apply(sparse,2,mean), digits=4)
+tab_sme[3,] = round(apply(dense2,2,mean), digits=4)
+tab_sme[4,] = round(apply(dense2_2,2,mean), digits=4)
+knitr::kable(cbind(dat_param,tab_sme))</code></pre>
 <table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">sigma_M</th>
+<th align="right">sigma_Y</th>
+<th align="right">FDR</th>
+<th align="right">Power</th>
+<th align="right">Precision</th>
+<th align="right">MSE_null</th>
+<th align="right">MSE_nonnull</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td align="left">Analysis</td>
-<td align="left">dense:delta=0.1</td>
-<td align="left">dense:delta=0.01</td>
-<td align="left">sparse:delta=0.1</td>
-<td align="left">sparse:delta=0.01</td>
+<td align="left">dense</td>
+<td align="right">1000</td>
+<td align="right">2</td>
+<td align="right">0.1</td>
+<td align="right">0.0000</td>
+<td align="right">0.9923</td>
+<td align="right">0.9989</td>
+<td align="right">0e+00</td>
+<td align="right">0.0121</td>
 </tr>
 <tr class="even">
-<td align="left">FDR_no_control</td>
-<td align="left">0.6046</td>
-<td align="left">0.6046</td>
-<td align="left">0.6465</td>
-<td align="left">0.6465</td>
+<td align="left">sparse</td>
+<td align="right">1000</td>
+<td align="right">2</td>
+<td align="right">0.1</td>
+<td align="right">0.0422</td>
+<td align="right">0.9413</td>
+<td align="right">0.9866</td>
+<td align="right">0e+00</td>
+<td align="right">0.0028</td>
 </tr>
 <tr class="odd">
-<td align="left">Precision_no_control</td>
-<td align="left">0.6779</td>
-<td align="left">0.6779</td>
-<td align="left">0.7048</td>
-<td align="left">0.7048</td>
+<td align="left">dense2</td>
+<td align="right">1000</td>
+<td align="right">2</td>
+<td align="right">0.1</td>
+<td align="right">0.2983</td>
+<td align="right">0.9939</td>
+<td align="right">0.9788</td>
+<td align="right">1e-04</td>
+<td align="right">0.0113</td>
 </tr>
 <tr class="even">
-<td align="left">Power_no_control</td>
-<td align="left">0.9853</td>
-<td align="left">0.9853</td>
-<td align="left">0.9813</td>
-<td align="left">0.9813</td>
-</tr>
-<tr class="odd">
-<td align="left">CoverageProb</td>
-<td align="left">0.8468</td>
-<td align="left">0.8468</td>
-<td align="left">0.9304</td>
-<td align="left">0.9305</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_control</td>
-<td align="left">0.1265</td>
-<td align="left">0.192</td>
-<td align="left">0.0639</td>
-<td align="left">0.1308</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_control</td>
-<td align="left">0.9526</td>
-<td align="left">0.9381</td>
-<td align="left">0.969</td>
-<td align="left">0.961</td>
-</tr>
-<tr class="even">
-<td align="left">Power_control</td>
-<td align="left">0.9076</td>
-<td align="left">0.928</td>
-<td align="left">0.8683</td>
-<td align="left">0.8946</td>
+<td align="left">dense2</td>
+<td align="right">1000</td>
+<td align="right">2</td>
+<td align="right">0.5</td>
+<td align="right">0.3106</td>
+<td align="right">0.9925</td>
+<td align="right">0.9776</td>
+<td align="right">4e-04</td>
+<td align="right">0.0484</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="result-for-alpha" class="section level1">
-<h1>result for alpha</h1>
-<pre class="r"><code>knitr::kable(t(tab_alpha))</code></pre>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">Analysis</td>
-<td align="left">dense:delta=0.1</td>
-<td align="left">dense:delta=0.01</td>
-<td align="left">sparse:delta=0.1</td>
-<td align="left">sparse:delta=0.01</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_no_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_no_control</td>
-<td align="left">0.9999</td>
-<td align="left">0.9999</td>
-<td align="left">0.9982</td>
-<td align="left">0.9982</td>
-</tr>
-<tr class="even">
-<td align="left">Power_no_control</td>
-<td align="left">0.9992</td>
-<td align="left">0.9992</td>
-<td align="left">0.9897</td>
-<td align="left">0.9897</td>
-</tr>
-<tr class="odd">
-<td align="left">CoverageProb</td>
-<td align="left">0.8816</td>
-<td align="left">0.8816</td>
-<td align="left">0.8547</td>
-<td align="left">0.8547</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_control</td>
-<td align="left">0.9963</td>
-<td align="left">0.9998</td>
-<td align="left">0.9979</td>
-<td align="left">0.9981</td>
-</tr>
-<tr class="even">
-<td align="left">Power_control</td>
-<td align="left">0.9737</td>
-<td align="left">0.9986</td>
-<td align="left">0.988</td>
-<td align="left">0.9891</td>
-</tr>
-</tbody>
-</table>
+<div id="some-plots-on-the-dense2-case." class="section level1">
+<h1>Some plots on the dense2 case.</h1>
+<div id="true-images" class="section level2">
+<h2>True images</h2>
+<pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$alpha_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$beta_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>datsim4$total_test_ST = datsim4$beta_test_ST * datsim4$alpha_test_ST
+ggplot(grids) + geom_point(aes(x1, x2, color = datsim4$total_test_ST),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="result-for-total-indirect-effect" class="section level1">
-<h1>result for total indirect effect</h1>
-<pre class="r"><code>knitr::kable(t(tab_total))</code></pre>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">Analysis</td>
-<td align="left">dense:delta=0.1</td>
-<td align="left">dense:delta=0.01</td>
-<td align="left">sparse:delta=0.1</td>
-<td align="left">sparse:delta=0.01</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_no_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0.1608</td>
-<td align="left">0.1609</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_no_control</td>
-<td align="left">0.9996</td>
-<td align="left">0.9996</td>
-<td align="left">0.9726</td>
-<td align="left">0.9726</td>
-</tr>
-<tr class="even">
-<td align="left">Power_no_control</td>
-<td align="left">0.9974</td>
-<td align="left">0.9974</td>
-<td align="left">0.9839</td>
-<td align="left">0.9838</td>
-</tr>
-<tr class="odd">
-<td align="left">CoverageProb</td>
-<td align="left">0.9165</td>
-<td align="left">0.9165</td>
-<td align="left">0.9512</td>
-<td align="left">0.9512</td>
-</tr>
-<tr class="even">
-<td align="left">FDR_control</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0.0019</td>
-<td align="left">0.0187</td>
-</tr>
-<tr class="odd">
-<td align="left">Precision_control</td>
-<td align="left">0.9903</td>
-<td align="left">0.9974</td>
-<td align="left">0.9597</td>
-<td align="left">0.9854</td>
-</tr>
-<tr class="even">
-<td align="left">Power_control</td>
-<td align="left">0.9309</td>
-<td align="left">0.9818</td>
-<td align="left">0.7004</td>
-<td align="left">0.9082</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="illustration-on-the-posterior-mean" class="section level1">
-<h1>illustration on the posterior mean</h1>
-<p>Dense case</p>
-<pre class="r"><code>n_rep=1
-  Y_result = readRDS(file.path(rpath,paste(&quot;simy&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
-  datsim = readRDS(file.path(dpath,paste(&quot;data&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
-  n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
+<div id="example-posterior-sample-under-sigma_y0.5" class="section level2">
+<h2>Example posterior sample under sigma_Y=0.5</h2>
+<pre class="r"><code>L_vec = ceiling(unlist(lapply(region_idx, length))*0.2)
+  basis_sq = readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/matern_basis.rds&quot;)
+Y_result &lt;- readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2/simy1.rds&quot;)
+n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
   theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
   beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
   pos_mean_beta = apply(beta_sample,1,mean)
+  grids = as.data.frame(grids)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-6-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>  M_result = readRDS(file.path(rpath,paste(&quot;simm&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>M_result = M_result &lt;- readRDS(&quot;/Volumes/GoogleDrive/My Drive/Research/Bayesian Mediation Analysis/2021_BMA_cleaned/simulations/2021-10-08_simulations_dense_4regions/sim_result4_2/simm1.rds&quot;)
   n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
   theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
   alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
   pos_mean_alpha = apply(alpha_sample,1,mean)
   ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
-Past versions of unnamed-chunk-7-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-7-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-7-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Sparse case</p>
-<pre class="r"><code>  Y_result = readRDS(file.path(rpath2,paste(&quot;simy&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
-  datsim = readRDS(file.path(dpath2,paste(&quot;data&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
-  n_mcmc = dim(Y_result$theta_beta_mcmc_thin)[2]
-  theta_sample = Y_result$theta_beta_mcmc_thin[,ceiling(n_mcmc*0.8):n_mcmc]
-  beta_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
-  pos_mean_beta = apply(beta_sample,1,mean)
-  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_beta),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
-Past versions of unnamed-chunk-8-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-8-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-8-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>  M_result = readRDS(file.path(rpath2,paste(&quot;simm&quot;,n_rep,&quot;.rds&quot;,sep=&quot;&quot;) ))
-  n_mcmc = dim(M_result$theta_alpha_mcmc)[2]
-  theta_sample = M_result$theta_alpha_mcmc[,ceiling(n_mcmc*0.9):n_mcmc]
-  alpha_sample = STGP_mcmc(theta_sample,region_idx,basis_sq,lambda = datsim$lambda)
-  pos_mean_alpha = apply(alpha_sample,1,mean)
-  ggplot(grids) + geom_point(aes(x1, x2, color = pos_mean_alpha),shape=15,size=2) + scale_color_viridis()</code></pre>
-<p><img src="figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/yuliangxu/BMA_analysis/blob/59014d6410c73f748472f00f3efcc71436972091/docs/figure/2021-09-24_simulations_denseBMA1.Rmd/unnamed-chunk-9-1.png" target="_blank">59014d6</a>
-</td>
-<td>
-yuliangxu
-</td>
-<td>
-2021-09-27
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>  total_sample1 = beta_sample[,1]*alpha_sample[,1]
+  ggplot(grids) + geom_point(aes(x1, x2, color = total_sample1 ),shape=15,size=2) + scale_color_viridis()</code></pre>
+<p><img src="figure/2021-10-07_simulations_SME.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1231,6 +729,7 @@ loaded via a namespace (and not attached):
 [41] magrittr_2.0.1    sass_0.4.0        tibble_3.1.2      crayon_1.4.1     
 [45] whisker_0.4       pkgconfig_2.0.3   ellipsis_0.3.2    assertthat_0.2.1 
 [49] rmarkdown_2.9     R6_2.5.0          git2r_0.28.0      compiler_4.0.5   </code></pre>
+</div>
 </div>
 </div>
 
